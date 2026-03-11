@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 env:
-  IMAGE_NAME: ${DOCKERHUB_USERNAME}/credpal-app
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/credpal-app
   IMAGE_TAG: ${{ github.sha }}
 
 jobs:
