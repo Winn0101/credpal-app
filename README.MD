@@ -69,7 +69,7 @@ No secrets are stored in code, all sensitive values are managed via GitHub-Actio
 
 The workflow uses a GitHub Actions **environment** called `production` with a required reviewer. Deployments will pause and wait for manual approval before proceeding.
 
-### 2. Infrastructure Provisioning (Terraform)
+### 2. Infrastructure Provisioning (Using Terraform)
 
 ```bash
 cd terraform
