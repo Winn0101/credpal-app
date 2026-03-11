@@ -111,9 +111,9 @@ Or you can use the docker compose command specified earlier.
 2. Multi-stage Docker build = Keeps the production image small by excluding unnecessary files and dependencies. Only the runtime artifacts are copied to the final stage improving performance.
 3. Secrets in code = All secrets are stored in GitHub Actions Secrets, stored as environment vairable (for local testing only) or AWS Secrets manager or SSM parameter store if deploying to AWS (like ECS) and injected at runtime, avoiding hardcoding sensitive information.
 4. HTTPS enforced = The ALB terminates TLS using an ACM certificate. HTTP (port 80) is redirected to HTTPS (port 443). ECS tasks are only reachable from the ALB security group on port 3000.
-5. Least-privilege IAM = Only the permissions needed to pull images, write logs, and read SSM parameters. Following the principle of least-privilege.
+5. Least-privilege IAM = Only the permissions needed to pull images, write logs, and read SSM parameters, Following the principle of least-privilege.
 
-### CI/CD
+### CI/CD 
 
 1. GitHub Actions = Native integration with the repository, free for public repos, and supports environment-based approvals.
 2. Build on PR, deploy on push to main = Pull requests are validated without deploying. Only merged code on `main` triggers a production deployment, keeping the main branch as the single source of truth.
