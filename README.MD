@@ -49,13 +49,6 @@ Once running via `docker-compose up`, the app is available at:
  Status                      http://localhost:3000/status     
  Process                     http://localhost:3000/process    
 
-**Example requests:**
-
-```bash
-# Health check
-curl http://localhost:3000/health
-```
-
 ## How to Deploy the Application
 
 ### 1. CI/CD Pipeline (GitHub Actions)
