@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 env:
-  IMAGE_NAME: ${DOCKERHUB_USERNAME}/credpal-app
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/credpal-app
   IMAGE_TAG: ${{ github.sha }}
 
 jobs:
@@ -59,7 +59,6 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
-      url: https://your-production-url.com
     steps:
       - name: Manual Approval
         run: echo "Waiting for manual approval..."
