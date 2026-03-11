@@ -63,11 +63,11 @@ The pipeline is defined in `.github/workflows/ci-cd.yml` and triggers on:
 DOCKERHUB_USERNAME   
 DOCKERHUB_TOKEN 
 
-No secrets are stored in code, all sensitive values are managed via GitHub Actions Secrets.
+No secrets are stored in code, all sensitive values are managed via GitHub-Actions Secrets.
 
 #### Manual Approval (Production)
 
-The workflow uses a GitHub Actions **environment** called `production` with a required reviewer. Deployments to ECS will pause and wait for manual approval before proceeding.
+The workflow uses a GitHub Actions **environment** called `production` with a required reviewer. Deployments will pause and wait for manual approval before proceeding.
 
 ### 2. Infrastructure Provisioning (Terraform)
 
