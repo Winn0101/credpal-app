@@ -23,8 +23,8 @@ A **production-ready DevOps pipeline** for a Node.js application using Docker, G
 ### Docker Compose
 
 # Clone the repository
-git clone https://github.com/<your-username>/credpal-app.git
-cd credpal-app
+- git clone https://github.com/winn0101/credpal-app.git
+- cd credpal-app
 
 # Start the app
 docker-compose up --build
