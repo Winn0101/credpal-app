@@ -15,16 +15,26 @@ A **production-ready DevOps pipeline** for a Node.js application using Docker, G
 
 ## How to Run the Application Locally
 
-### Prerequisites
-
-- Docker & Docker-Compose should be installed
-- (Optional) Node.js 18+ if you want to run outside Docker
-
-### Docker Compose
-
 # Clone the repository
 - git clone https://github.com/winn0101/credpal-app.git
 - cd credpal-app
+
+
+### Prerequisites
+
+- Docker & Docker-Compose should be installed
+
+### Docker Compose
+
+**Export PostgreSQL Secrets**:
+- Run the following commands in your terminal:
+
+ ```bash
+ export POSTGRES_USER=your_user
+ export POSTGRES_PASSWORD=your_password
+ export POSTGRES_DB=your_database
+ ```
+ Replace `your_user`, `your_password`, and `your_database` with your actual PostgreSQL credentials.
 
 # Start the app
 docker-compose up --build
@@ -34,8 +44,8 @@ This will:
 - Start a Postgres container
 - Expose the app on **http://localhost:3000**
 
-To stop:
-
+To stop the application:
+Run
 ```bash
 docker-compose down
 ```
@@ -91,13 +101,15 @@ docker build -t credpal-app:latest .
 docker tag credpal-app:latest <registry>/credpal-app:latest
 docker push <registry>/credpal-app:latest
 
+Or you can use the docker compose command specified earlier.
+
 ## Key Decisions
 
 ### Security
 
 1. Non-root Docker user = The Dockerfile creates and switches to a non-root user to minimize privilege attacks.
 2. Multi-stage Docker build = Keeps the production image small by excluding unnecessary files and dependencies. Only the runtime artifacts are copied to the final stage improving performance.
-3. Secrets in code = All secrets are stored in GitHub Actions Secrets and injected at runtime via AWS SSM Parameter Store, avoiding hardcoding sensitive information.
+3. Secrets in code = All secrets are stored in GitHub Actions Secrets, stored as environment vairable (for local testing only) or AWS Secrets manager or SSM parameter store if deploying to AWS (like ECS) and injected at runtime, avoiding hardcoding sensitive information.
 4. HTTPS enforced = The ALB terminates TLS using an ACM certificate. HTTP (port 80) is redirected to HTTPS (port 443). ECS tasks are only reachable from the ALB security group on port 3000.
 5. Least-privilege IAM = Only the permissions needed to pull images, write logs, and read SSM parameters. Following the principle of least-privilege.
 
